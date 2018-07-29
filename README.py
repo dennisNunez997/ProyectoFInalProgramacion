@@ -1,6 +1,3 @@
-# ProyectoFInalProgramacion
-trabajo definitivo de programacion
-
 # PygameProyectoJuego
 #proyecto final de programacion
 
@@ -16,6 +13,8 @@ global segundos
 segundos = 0
 ancho = 1000
 alto = 600
+
+listaEnemigo = []
 
 # creacion de clases
 #clase nave espacial
@@ -167,11 +166,42 @@ class enemigo(pygame.sprite.Sprite):
 
 #creacion de la funcion principal
 
+def cargarEnemigos():
+    posX = 900
+    enemy = enemigo(1000,490)
+    listaEnemigo.append(enemy)
+    for x in range(1,2): 
+        enemy = enemigo(posX,300)
+        listaEnemigo.append(enemy)
+        posX = posX + 200
+    enemy = enemigo(2000,50)
+    listaEnemigo.append(enemy)
+    for x in range(1,3):
+        enemy = enemigo(posX,200)
+        listaEnemigo.append(enemy)
+        posX = posX + 200
+    enemy = enemigo(2000,15000)
+    listaEnemigo.append(enemy)
+    for x in range(1,4):
+        enemy = enemigo(posX,400)
+        listaEnemigo.append(enemy)
+        posX = posX + 500
+    for x in range(1,3):
+        enemy = enemigo(posX,150)
+        listaEnemigo.append(enemy)
+        posX = posX + 250
+    for x in range (1,4):
+        enemy = enemigo(posX,490)
+        listaEnemigo.append(enemy)
+        posX = posX + 300
+        
+    
 
 def SpaceAttack():
     #funcion cronometro
     aux = 1
-    rival1 = enemigo(1000,300)
+    
+    cargarEnemigos()
     #inicializacion del juego
     pygame.init()
     #creacion de la ventana del juego
@@ -189,28 +219,6 @@ def SpaceAttack():
     #llamado de la clase nave espacial mediante la creacion de una variable
     jugador = NaveEspacial()
     #creacion de una variable para llamar a la clase enemigo
-    rival = enemigo(800,300)
-    rival1 = enemigo(1000,400)
-    rival2 = enemigo(1200,200)
-    rival3 = enemigo(1300,500)
-    rival4 = enemigo(1500,150)
-    rival5 = enemigo(2000,350)
-    rival6 = enemigo(2500,200)
-    rival7 = enemigo(2300,460)
-    rival8 = enemigo(2600,444)
-    rival9 = enemigo(2900,222)
-    rival10 = enemigo(3000,100)
-    rival11 = enemigo(3500,290)
-    rival12 = enemigo(3700,440)
-    rival13 = enemigo(3800,330)
-    rival14 = enemigo(4000,100)
-    rival15 = enemigo(4500,220)
-    rival16 = enemigo(4900,500)
-    rival17 = enemigo(5500,243)
-    rival18 = enemigo(5880, 431)
-    rival19 = enemigo(6000,490)
-    rival20 = enemigo(6300,142)
-
     
     #imagen de fondo
     mi_imagen = pygame.image.load("fondoPanoramica.png")
@@ -260,27 +268,6 @@ def SpaceAttack():
         else:
             derecha = True
         #dibujado de la nave enemiga
-        rival.dibujar(ventana)
-        rival1.dibujar(ventana)
-        rival2.dibujar(ventana)
-        rival3.dibujar(ventana)
-        rival4.dibujar(ventana)
-        rival5.dibujar(ventana)
-        rival6.dibujar(ventana)
-        rival7.dibujar(ventana)
-        rival8.dibujar(ventana)
-        rival9.dibujar(ventana)
-        rival10.dibujar(ventana)
-        rival11.dibujar(ventana)
-        rival12.dibujar(ventana)
-        rival13.dibujar(ventana)
-        rival14.dibujar(ventana)
-        rival15.dibujar(ventana)
-        rival16.dibujar(ventana)
-        rival17.dibujar(ventana)
-        rival18.dibujar(ventana)
-        rival19.dibujar(ventana)
-        rival20.dibujar(ventana)
         
         
         contador = fuente1.render("tiempo: "+str(Tiempo),0,(255,255,255))
@@ -302,69 +289,43 @@ def SpaceAttack():
                 if x.rect.left<100:
                     jugador.listaDisparo.remove(x)
                 else: 
-                    if x.rect.colliderect(rival):
-                        ventana.blit(explosion,(rival))
-                    if x.rect.colliderect(rival1):
-                        ventana.blit(explosion,(rival1))
-                    if x.rect.colliderect(rival2):
-                        ventana.blit(explosion,(rival2))
-                    if x.rect.colliderect(rival3):
-                        ventana.blit(explosion,(rival3))
-                    if x.rect.colliderect(rival4):
-                        ventana.blit(explosion,(rival4))
-                    if x.rect.colliderect(rival5):
-                        ventana.blit(explosion,(rival5))
-                    if x.rect.colliderect(rival6):
-                        ventana.blit(explosion,(rival6))
-                    if x.rect.colliderect(rival7):
-                        ventana.blit(explosion,(rival7))
-                    if x.rect.colliderect(rival8):
-                        ventana.blit(explosion,(rival8))
-                    if x.rect.colliderect(rival9):
-                        ventana.blit(explosion,(rival9))
-                    if x.rect.colliderect(rival10):
-                        ventana.blit(explosion,(rival10))
-                    if x.rect.colliderect(rival11):
-                        ventana.blit(explosion,(rival11))
-                    if x.rect.colliderect(rival12):
-                        ventana.blit(explosion,(rival12))
-                    if x.rect.colliderect(rival13):
-                        ventana.blit(explosion,(rival13))
-                    if x.rect.colliderect(rival14):
-                        ventana.blit(explosion,(rival14))
-                    if x.rect.colliderect(rival15):
-                        ventana.blit(explosion,(rival15))
-                    if x.rect.colliderect(rival16):
-                        ventana.blit(explosion,(rival16))
-                    if x.rect.colliderect(rival16):
-                        ventana.blit(explosion,(rival17))
-                    if x.rect.colliderect(rival7):
-                        ventana.blit(explosion,(rival17))
-                    if x.rect.colliderect(rival18):
-                        ventana.blit(explosion,(rival18))
-                    if x.rect.colliderect(rival19):
-                        ventana.blit(explosion,(rival19))
-                    if x.rect.colliderect(rival20):
-                        ventana.blit(explosion,(rival20))
-                    
-        
+                    for enemy in listaEnemigo:
+                        if x.rect.colliderect(enemy.rect):
+                            listaEnemigo.remove(enemy)
+                            jugador.listaDisparo.remove(x)
+                            ventana.blit(explosion,(enemy))                    
+
+             
         #misma condicion para la clase enemiga
-        if len(rival.listaDisparo)>0:
-            for x in rival.listaDisparo:
+        if len(listaEnemigo) > 0:
+            for enemy in listaEnemigo:
+                enemy.dibujar(ventana)
+                
+
+        if len(enemy.listaDisparo)>0:
+            for x in enemy.listaDisparo:
                 x.dibujar(ventana)
                 x.trayectoria()
                 if x.rect.colliderect(jugador):
                     jugador.destruccion()
                     enJuego = False
                 if x.rect.top > 900:
-                    rival.listaDisparo.remove(x)
+                    enemy.listaDisparo.remove(x)
                 else:
                     for disparo in jugador.listaDisparo:
                         if x.rect.colliderect(disparo.rect):
                             jugador.listaDisparo.remove(disparo)
-                            rival.listaDisparo.remove(x)
-                            rival.explotar
+                            enemy.listaDisparo.remove(x)
+                            
+                            
         pygame.display.update()
 
 
 SpaceAttack()
+
+
+
+
+
+
+
